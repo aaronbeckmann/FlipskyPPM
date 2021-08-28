@@ -10,6 +10,8 @@ License: GNU GPL v3
 #include "FlipskyPPM.h"
 #include "Arduino.h"
 
+volatile int FlipskyPPM::value;
+
 FlipskyPPM::FlipskyPPM(int pin){
     pinMode(pin, INPUT);
     attachInterrupt(digitalPinToInterrupt(pin), FlipskyPPM::handler, CHANGE);
@@ -25,7 +27,7 @@ void FlipskyPPM::handler(){
     previousTimestamp = currentTimeStamp;
     
     if (pulseWidth < 4000) {
-        FlipskyPPM::value = pulseWidth - 1000;
+        value = pulseWidth - 1000;
     }
 }
 
