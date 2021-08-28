@@ -25,9 +25,9 @@ void FlipskyPPM::handler(){
     currentTimeStamp = micros();
     pulseWidth = currentTimeStamp - previousTimestamp;
     previousTimestamp = currentTimeStamp;
-    
+
     if (pulseWidth < 4000) {
-        value = pulseWidth - 1000;
+        value = (int) pulseWidth - 1000;
     }
 }
 
